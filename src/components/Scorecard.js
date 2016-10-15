@@ -1,49 +1,60 @@
 import React, { Component } from 'react';
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow} from 'material-ui/Table';
+import { Table } from 'react-bootstrap';
 import RaisedButton from 'material-ui/RaisedButton';
 import Metric from './Metric';
 
-const Scorecard = props => {
-  return (
-    <div>
-    	<span className="scorecard-name">{props.name} </span>
-    	<span className="chosen-year">{props.year}</span>
-      <RaisedButton primary onTouchTap={() => props.nextYear()} label="Next Year" />
-      <RaisedButton secondary onTouchTap={() => props.lastYear()} label="Last Year" />
+export default class Scorecard extends Component {
+  constructor() {
+    super();
+  }
 
-  	  <Table>
-  		  <TableHeader>
-          <TableRow>
-            <TableHeaderColumn>Metric</TableHeaderColumn>
-            <TableHeaderColumn>Sample Size</TableHeaderColumn>
-            <TableHeaderColumn>Prime</TableHeaderColumn>
-            <TableHeaderColumn>Previous Year Restated</TableHeaderColumn>
-            <TableHeaderColumn>Jan</TableHeaderColumn>
-            <TableHeaderColumn>Feb</TableHeaderColumn>
-            <TableHeaderColumn>Mar</TableHeaderColumn>
-            <TableHeaderColumn>Apr</TableHeaderColumn>
-            <TableHeaderColumn>May</TableHeaderColumn>
-            <TableHeaderColumn>Jun</TableHeaderColumn>
-            <TableHeaderColumn>Jul</TableHeaderColumn>
-            <TableHeaderColumn>Aug</TableHeaderColumn>
-            <TableHeaderColumn>Sep</TableHeaderColumn>
-            <TableHeaderColumn>Oct</TableHeaderColumn>
-            <TableHeaderColumn>Nov</TableHeaderColumn>
-            <TableHeaderColumn>Dec</TableHeaderColumn>
-            <TableHeaderColumn>YTD</TableHeaderColumn>
-            <TableHeaderColumn>Target</TableHeaderColumn>
-            <TableHeaderColumn className="red">Red</TableHeaderColumn>
-            <TableHeaderColumn>Yellow</TableHeaderColumn>
-            <TableHeaderColumn>Green</TableHeaderColumn>
-          </TableRow>
-  		  </TableHeader>
-  		  <TableBody>
-  			  {props.children}
-  		  </TableBody>
-  	  </Table>
+  _renderMetrics() {
+    const sortedMetrics = this.props.metrics.sort((a, b) => a.order - b.order);
+    return sortedMetrics.map((metric, i) => {
+      return (<Metric key={i} metric={metric} year={this.props.year} />);
+    });
+  }
 
-    </div>
-  );
+  render() {
+    return (
+      <div>
+      	<span className="scorecard-name">{this.props.name} </span>
+      	<span className="chosen-year">{this.props.year}</span>
+        <RaisedButton primary onTouchTap={() => this.props.nextYear()} label="Next Year" />
+        <RaisedButton secondary onTouchTap={() => this.props.lastYear()} label="Last Year" />
+
+    	  <Table responsive condensed hover>
+    		  <thead>
+            <tr>
+              <th>Metric</th>
+              <th>Sample Size</th>
+              <th>Prime</th>
+              <th>Previous Year Restated</th>
+              <th>Jan</th>
+              <th>Feb</th>
+              <th>Mar</th>
+              <th>Apr</th>
+              <th>May</th>
+              <th>Jun</th>
+              <th>Jul</th>
+              <th>Aug</th>
+              <th>Sep</th>
+              <th>Oct</th>
+              <th>Nov</th>
+              <th>Dec</th>
+              <th>YTD</th>
+              <th>Target</th>
+              <th className="red">Red</th>
+              <th className="yellow">Yellow</th>
+              <th className="green">Green</th>
+            </tr>
+    		  </thead>
+    		  <tbody>
+    			  {this._renderMetrics()}
+    		  </tbody>
+    	  </Table>
+
+      </div>
+    );
+  }
 }
-
-module.exports = Scorecard;
