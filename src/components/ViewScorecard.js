@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Scorecard from './Scorecard';
-import SampleData from '../Data';
+import SampleScorecards from '../Data';
 
 export default class ViewScorecard extends Component {
   constructor() {
@@ -11,11 +11,11 @@ export default class ViewScorecard extends Component {
   render() {
     return (
       <Scorecard
-        name={SampleData.scorecardName}
-        year={SampleData.chosenYear}
-        metrics={SampleData.metrics}
-        nextYear={() => this.setState({ chosenYear: ++SampleData.chosenYear })}
-        lastYear={() => this.setState({ chosenYear: --SampleData.chosenYear })}
+        name={SampleScorecards[0].name}
+        year={SampleScorecards[0].chosenYear}
+        metrics={SampleScorecards[0].metrics}
+        nextYear={() => this.setState({ chosenYear: ++SampleScorecards[0].chosenYear })}
+        lastYear={() => this.setState({ chosenYear: --SampleScorecards[0].chosenYear })}
       />
     );
   }

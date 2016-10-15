@@ -4,17 +4,34 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
+import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router';
 
 export default class App extends Component {
   constructor() {
     super();
     injectTapEventPlugin();
     this.state ={
-      drawerOpen: false
+      drawerOpen: false,
+      menuItems: [
+        {path: '/', title: 'Home'},
+        {path: '/scorecards', title: 'View Scorecards'},
+        {path: '/', title: 'New Scorecard'},
+        {path: '/', title: 'About'}
+      ]
     }
   }
 
   drawerToggle = () => this.setState({drawerOpen: !this.state.drawerOpen});
+
+  _renderMenuItems() {
+    return this.state.menuItems.map((item, i) => {
+      return(
+        <Link to={item.path} key={i}>
+          <MenuItem onTouchTap={this.drawerToggle}>{item.title}</MenuItem>
+        </Link>
+      );
+    });
+  }
 
   render() {
     return (
@@ -26,9 +43,7 @@ export default class App extends Component {
           />
 
           <Drawer open={this.state.drawerOpen}>
-            <MenuItem>View Scorecards</MenuItem>
-            <MenuItem>New Scorecard</MenuItem>
-            <MenuItem>About</MenuItem>
+            {this._renderMenuItems()}
           </Drawer>
 
           {this.props.children}
