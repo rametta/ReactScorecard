@@ -1,9 +1,12 @@
 # React Scorecard
 
 To install with Node
-1. `git clone https://github.com/rametta/ReactScorecard.git`
-2. `cd ReactScorecard`
-3. `npm install`
-4. `npm start`
+
+1. Clone the repo with: `git clone https://github.com/rametta/ReactScorecard.git`
+2. Enter the project folder: `cd ReactScorecard`
+3. Install all dependencies: `npm install`
+4. Start the dev server: `npm start`
 
 Go to [http://localhost:8080/](http://localhost:8080/)
+
+**Made by Jason Rametta**
