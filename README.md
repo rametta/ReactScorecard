@@ -1,5 +1,7 @@
 # React Scorecard
 
+**Still a Work In Progress, expected time of completion: Year end 2016**
+
 To install with Node
 
 1. Clone the repo with: `git clone https://github.com/rametta/ReactScorecard.git`
@@ -9,4 +11,4 @@ To install with Node
 
 Go to [http://localhost:8080/](http://localhost:8080/)
 
-**Made by Jason Rametta**
+*Made by Jason Rametta*
