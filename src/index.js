@@ -23,6 +23,12 @@ ReactDOM.render(
         <IndexRoute component={ScorecardList} />
       </Route>
 
+      <Route path="scorecard" component={App}>
+        <Route path=":name" component={ViewScorecard}>
+
+        </Route>
+      </Route>
+
     </Router>
   </Provider>
   , document.getElementById('app'));

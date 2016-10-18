@@ -4,9 +4,6 @@ import Scorecard from './Scorecard';
 import SampleScorecards from '../Data';
 
 export default class ViewScorecard extends Component {
-  constructor() {
-    super();
-  }
 
   render() {
     return (
@@ -19,4 +16,5 @@ export default class ViewScorecard extends Component {
       />
     );
   }
+
 }

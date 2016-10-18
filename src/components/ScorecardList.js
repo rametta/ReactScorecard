@@ -9,8 +9,9 @@ export default class ScorecardList extends Component {
 
   _renderListItems() {
     return SampleScorecards.map((scorecard, i) => {
+      const path = `/scorecard/${scorecard.name}`;
       return (
-        <Link key={i} to="/">
+        <Link key={i} to={path} name={scorecard.name}>
           <ListItem>
             {scorecard.name}
           </ListItem>
