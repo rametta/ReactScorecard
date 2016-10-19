@@ -1,27 +1,34 @@
 import React, { Component } from 'react';
 import { Table } from 'react-bootstrap';
 import RaisedButton from 'material-ui/RaisedButton';
+
 import Metric from './Metric';
+import SampleScorecards from '../Data';
 
 export default class Scorecard extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    const index = parseInt(this.props.params.id);
+    this.state = {
+      year: new Date().getFullYear(),
+      scorecard: SampleScorecards[index]
+    };
   }
 
   _renderMetrics() {
-    const sortedMetrics = this.props.metrics.sort((a, b) => a.order - b.order);
+    const sortedMetrics = this.state.scorecard.metrics.sort((a, b) => a.order - b.order);
     return sortedMetrics.map((metric, i) => {
-      return (<Metric key={i} metric={metric} year={this.props.year} />);
+      return (<Metric key={i} metric={metric} year={this.state.year} />);
     });
   }
 
   render() {
     return (
       <div>
-      	<span className="scorecard-name">{this.props.name} </span>
-      	<span className="chosen-year">{this.props.year}</span>
-        <RaisedButton primary onTouchTap={() => this.props.nextYear()} label="Next Year" />
-        <RaisedButton secondary onTouchTap={() => this.props.lastYear()} label="Last Year" />
+      	<span className="scorecard-name">{this.state.scorecard.name} </span>
+      	<span className="chosen-year">{this.state.year}</span>
+        <RaisedButton primary onTouchTap={() => this.setState({ year: ++this.state.year })} label="Next Year" />
+        <RaisedButton secondary onTouchTap={() => this.setState({ year: --this.state.year })} label="Last Year" />
 
     	  <Table responsive condensed hover>
     		  <thead>

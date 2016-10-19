@@ -6,7 +6,7 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router';
 
-export default class App extends Component {
+export default class Layout extends Component {
   constructor() {
     super();
     injectTapEventPlugin();
@@ -15,8 +15,8 @@ export default class App extends Component {
       menuItems: [
         {path: '/', title: 'Home'},
         {path: '/scorecards', title: 'View Scorecards'},
-        {path: '/', title: 'New Scorecard'},
-        {path: '/', title: 'About'}
+        {path: '/new', title: 'New Scorecard'},
+        {path: '/about', title: 'About'}
       ]
     }
   }

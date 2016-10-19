@@ -26,12 +26,10 @@ export default class Metric extends Component {
 		const data = this.props.metric.data[this.props.year].months;
 		return data.map((value, i) => {
 			return (
-        <td
-          key={i}
-          className={this.getColor(value)}>
+        <td key={i} className={this.getColor(value)}>
             {this.formatValue(value)}
         </td>
-            );
+			);
 		});
 	}
 
