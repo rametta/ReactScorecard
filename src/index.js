@@ -24,7 +24,7 @@ ReactDOM.render(
       </Route>
 
       <Route path="scorecard" component={App}>
-        <Route path=":name" component={ViewScorecard}>
+        <Route path=":id" component={ViewScorecard}>
 
         </Route>
       </Route>

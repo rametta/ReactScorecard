@@ -1,5 +1,6 @@
 const SampleScorecards = [
   {
+    id: 0,
     name: 'Scorecard 1',
     chosenYear: 2016,
     metrics: [
@@ -135,6 +136,7 @@ const SampleScorecards = [
     ]
   },
   {
+    id: 1,
     name: 'Scorecard 2',
     chosenYear: 2016,
     metrics: [

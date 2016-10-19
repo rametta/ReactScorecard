@@ -8,10 +8,10 @@ import SampleScorecards from '../Data';
 export default class ScorecardList extends Component {
 
   _renderListItems() {
-    return SampleScorecards.map((scorecard, i) => {
-      const path = `/scorecard/${scorecard.name}`;
+    return SampleScorecards.map(scorecard => {
+      const path = `/scorecard/${scorecard.id}`;
       return (
-        <Link key={i} to={path} name={scorecard.name}>
+        <Link key={scorecard.id} to={path} name={scorecard.id}>
           <ListItem>
             {scorecard.name}
           </ListItem>
