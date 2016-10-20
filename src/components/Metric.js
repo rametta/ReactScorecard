@@ -18,7 +18,7 @@ export default class Metric extends Component {
 	}
 
 	formatValue(value) {
-		const format = this.props.metric.format;
+		const format = this.props.metric.data[this.props.year].format;
 		return numeral(value).format(format);
 	}
 

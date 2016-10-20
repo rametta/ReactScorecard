@@ -9,6 +9,7 @@ import Layout from './components/Layout';
 import Home from './components/Home';
 import About from './components/About';
 import AddScorecard from './components/AddScorecard';
+import MetricPage from './components/MetricPage';
 import Scorecard from './components/Scorecard';
 import ScorecardList from './components/ScorecardList';
 
@@ -24,7 +25,11 @@ ReactDOM.render(
         <Route path="new" component={AddScorecard}></Route>
         <Route path="about" component={About}></Route>
         <Route path="scorecard">
-          <Route path=":id" component={Scorecard}></Route>
+          <Route path=":id" component={Scorecard}>
+            <Route path="metric" component={MetricPage}>
+
+            </Route>
+          </Route>
         </Route>
       </Route>
 

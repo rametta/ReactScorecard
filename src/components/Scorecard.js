@@ -15,10 +15,28 @@ export default class Scorecard extends Component {
     };
   }
 
+  /* TODO: move to Redux Actions when that's setup properly */
+  changeYear(type) {
+    //Copy the current year
+    let cYear = this.state.year;
+    //Get the next potential year
+    if(type === "INC") {
+      cYear = ++cYear;
+    } else if(type === "DEC") {
+      cYear = --cYear;
+    }
+    //Check if there's data for that year
+    if(typeof this.state.scorecard.metrics[0].data[cYear] !== "undefined") {
+      //If there is, change the state
+      this.setState({year: cYear});
+    }
+  }
+
   _renderMetrics() {
     const sortedMetrics = this.state.scorecard.metrics.sort((a, b) => a.order - b.order);
     return sortedMetrics.map((metric, i) => {
-      return (<Metric key={i} metric={metric} year={this.state.year} />);
+      if(typeof metric.data[this.state.year] === "undefined") return;
+      return <Metric key={i} metric={metric} year={this.state.year} />;
     });
   }
 
@@ -27,8 +45,8 @@ export default class Scorecard extends Component {
       <div>
       	<span className="scorecard-name">{this.state.scorecard.name} </span>
       	<span className="chosen-year">{this.state.year}</span>
-        <RaisedButton primary onTouchTap={() => this.setState({ year: ++this.state.year })} label="Next Year" />
-        <RaisedButton secondary onTouchTap={() => this.setState({ year: --this.state.year })} label="Last Year" />
+        <RaisedButton primary onTouchTap={() => this.changeYear("INC")} label="Next Year" />
+        <RaisedButton secondary onTouchTap={() => this.changeYear("DEC")} label="Last Year" />
 
     	  <Table responsive condensed hover>
     		  <thead>
@@ -36,7 +54,7 @@ export default class Scorecard extends Component {
               <th>Metric</th>
               <th>Sample Size</th>
               <th>Prime</th>
-              <th>Previous Year Restated</th>
+              <th>{this.state.year - 1} Restated</th>
               <th>Jan</th>
               <th>Feb</th>
               <th>Mar</th>
